@@ -283,11 +283,16 @@ public class LocalCallingIdentity {
     }
 
     private boolean isLegacyStorageGranted() {
+        // DynaROM: always grant legacy storage. TODO: Add an override to app settings instead
+        /*
         boolean defaultScopedStorage = CompatChanges.isChangeEnabled(
                 DEFAULT_SCOPED_STORAGE, getPackageName(), UserHandle.getUserHandleForUid(uid));
         boolean forceEnableScopedStorage = CompatChanges.isChangeEnabled(
                 FORCE_ENABLE_SCOPED_STORAGE, getPackageName(), UserHandle.getUserHandleForUid(uid));
-
+        */
+        boolean defaultScopedStorage = false;
+        boolean forceEnableScopedStorage = false;
+        
         // if Scoped Storage is strictly enforced, the app does *not* have legacy storage access
         if (isScopedStorageEnforced(defaultScopedStorage, forceEnableScopedStorage)) {
             return false;
